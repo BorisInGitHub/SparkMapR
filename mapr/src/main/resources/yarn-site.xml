@@ -1,7 +1,7 @@
 <configuration>
     <property>
         <name>yarn.resourcemanager.scheduler.address</name>
-        <value>maprdemo:8030</value>
+        <value>MAPR:8030</value>
         <source>programatically</source>
     </property>
     <property>
@@ -10,18 +10,18 @@
     </property>
     <property>
         <name>yarn.resourcemanager.resource-tracker.address</name>
-        <value>maprdemo:8031</value>
+        <value>MAPR:8031</value>
         <source>programatically</source>
     </property>
     <property>
         <name>yarn.resourcemanager.address</name>
-        <value>maprdemo:8032</value>
+        <value>MAPR:8032</value>
         <source>programatically</source>
     </property>
 
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>maprdemo</value>
+        <value>MAPR</value>
         <source>programatically</source>
     </property>
 

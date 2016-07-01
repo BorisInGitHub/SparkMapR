@@ -139,7 +139,7 @@
 
     <properties>
         <!--<spark.version>1.6.0</spark.version>-->
-        <spark.version>1.5.2-mapr-1602</spark.version>
+        <spark.version>1.5.2-mapr-1605</spark.version>
         <mapr.version>5.1.0-mapr</mapr.version>
     </properties>
 
@@ -167,11 +167,11 @@
         <!--<artifactId>hadoop-core</artifactId>-->
         <!--<version>2.5.1-mapr-1410-SNAPSHOT</version>-->
         <!--</dependency>-->
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-            <version>1.0.3-mapr-5.1.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.hadoop</groupId>-->
+            <!--<artifactId>hadoop-core</artifactId>-->
+            <!--<version>1.0.3-mapr-5.1.0</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>com.mapr.hadoop</groupId>

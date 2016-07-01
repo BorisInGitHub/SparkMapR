@@ -26,17 +26,17 @@ public class Test {
         long start = System.currentTimeMillis();
 
 
-        // Configuration du working direcotry à
+        // Configuration du working directory à
 
         // Configuration du hadoop.home.dir (sur le cluster ou sur mon poste ????)
         //System.setProperty("hadoop.home.dir", "/opt/cloudera/parcels/CDH/lib/hadoop");
         //System.setProperty("hadoop.home.dir", "/home/breynard/IdeaProjects/SparkYarn/src/main/resources");
 
         // Comment configurer le SPARK_LOCAL_IP ???
-        System.setProperty("SPARK_LOCAL_IP", "127.0.0.1");
+        //System.setProperty("SPARK_LOCAL_IP", "192.168.1.250");
 
         // Configuration du user SPARK
-        System.setProperty("HADOOP_USER_NAME", "cloudera"); // Or Add VM option : -DHADOOP_USER_NAME=spark
+        System.setProperty("HADOOP_USER_NAME", "spark"); // Or Add VM option : -DHADOOP_USER_NAME=spark
 //        System.setProperty("HADOOP_CONF_DIR", "/home/breynard/IdeaProjects/SparkYarn/src/conf/cloudera/yarn-conf");
 //        System.setProperty("YARN_CONF_DIR", "/home/breynard/IdeaProjects/SparkYarn/src/conf/cloudera/yarn-conf");
 
@@ -173,8 +173,54 @@ public class Test {
                 .setMaster("yarn-client")
 
                 .set("spark.executor.memory", "512M")
+//                .set("spark.executor.cores", "1") // 1 in YARN mode, all the available cores on the worker in standalone mode.
+
+                //.set("spark.deploy.defaultCores", "1")
+//                .set("spark.cores.max","2")
                 .set("spark.yarn.maxAppAttempts", "10")
 
+                //.set("spark.driver.host","quickstart.cloudera")
+                //.set("spark.driver.port","38634")
+
+                // Log SPARK
+                .set("spark.driver.log.level", "INFO")
+                .set("spark.eventLog.dir", "hdfs:///user/spark/")
+                .set("spark.eventLog.enabled", "true")
+
+                //# sudo -u spark hdfs dfs -mkdir -p /user/spark
+                //# sudo -u spark hdfs dfs -put /opt/cloudera/parcels/CDH/lib/spark/lib/spark-assembly.jar /user/spark/spark-assembly.jar
+                //# sudo -u spark hdfs dfs -put ~/sparkYarn-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarn-1.0-SNAPSHOT-worker.jar
+                //# sudo -u spark hdfs dfs -put ~/sparkYarn-1.0-SNAPSHOT-all.jar /user/spark/sparkYarn-1.0-SNAPSHOT-all.jar
+                //# sudo -u spark hdfs dfs -chmod -R 777 /user/spark
+                //# sudo -u spark hdfs dfs -ls /user/spark/
+
+                //.set("spark.yarn.dist.files", "hdfs:///user/spark/sparkYarn-1.0-SNAPSHOT-all.jar")
+                .set("spark.yarn.dist.files", "hdfs://cdh/user/spark/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
+                .set("spark.yarn.jar", "hdfs://cdh/user/spark/spark-assembly.jar")
+                .set("spark.yarn.am.extraLibraryPath", "hdfs://cdh/user/spark/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
+        ;
+
+
+        SparkContext sparkContext = new SparkContext(sparkConf);
+        return new JavaSparkContext(sparkContext);
+    }
+
+    private static JavaSparkContext modeCDHSimple2() {
+        // Copie dans les ressources de yarn-conf (conf/cloudera/yarn-conf)
+
+        // Changement côté serveur :
+        // yarn.nodemanager.resource.memory-mb à 2500
+
+        SparkConf sparkConf = new SparkConf();
+        sparkConf.setAppName("Aggrego Test")
+                .setMaster("yarn-client")
+
+                .set("spark.executor.memory", "512M")
+                .set("spark.yarn.maxAppAttempts", "10")
+
+
+                //.set("spark.driver.host","quickstart.cloudera")
+                //.set("spark.driver.port","38634")
 
                 // Log SPARK
 //                .set("spark.driver.log.level", "INFO")
@@ -190,9 +236,9 @@ public class Test {
 
 
                 //.set("spark.yarn.dist.files", "hdfs:///user/spark/sparkYarn-1.0-SNAPSHOT-all.jar")
-                .set("spark.yarn.dist.files", "hdfs://quickstart.cloudera/user/cloudera/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
-                .set("spark.yarn.jar", "hdfs://quickstart.cloudera/user/cloudera/spark-assembly.jar")
-                .set("spark.yarn.am.extraLibraryPath", "hdfs://quickstart.cloudera/user/cloudera/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
+                .set("spark.yarn.dist.files", "hdfs://cdhmasternode/user/cloudera/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
+                .set("spark.yarn.jar", "hdfs://cdhmasternode/user/cloudera/spark-assembly.jar")
+                .set("spark.yarn.am.extraLibraryPath", "hdfs://cdhmasternode/user/cloudera/sparkYarnCDH-1.0-SNAPSHOT-worker.jar")
         ;
 
 

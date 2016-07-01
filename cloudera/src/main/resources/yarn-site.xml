@@ -12,27 +12,27 @@
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>quickstart.cloudera:8032</value>
+    <value>cdh:8032</value>
   </property>
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value>quickstart.cloudera:8033</value>
+    <value>cdh:8033</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>quickstart.cloudera:8030</value>
+    <value>cdh:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>quickstart.cloudera:8031</value>
+    <value>cdh:8031</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value>quickstart.cloudera:8088</value>
+    <value>cdh:8088</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.https.address</name>
-    <value>quickstart.cloudera:8090</value>
+    <value>cdh:8090</value>
   </property>
   <property>
     <name>yarn.resourcemanager.client.thread-count</name>

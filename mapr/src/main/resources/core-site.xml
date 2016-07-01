@@ -37,11 +37,11 @@
 
     <property>
         <name>mapr.host</name>
-        <value>maprdemo</value>
+        <value>MAPR</value>
     </property>
     <property>
         <name>fs.mapr.working.dir</name>
-        <value>/user/$USERNAME/</value>
+        <value>/tmp/</value>
     </property>
 
 

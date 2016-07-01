@@ -30,6 +30,9 @@ public class Test {
     }
 
     private static JavaSparkContext modeMapR() {
+
+        System.setProperty("HADOOP_USER_NAME", "root");
+
         SparkConf sparkConf = new SparkConf();
         sparkConf.setAppName("Aggrego Test")
                 .setMaster("yarn-client")
@@ -49,9 +52,9 @@ public class Test {
 
 
                 // maprfs://demo.mapr.com/tmp/sparkYarn-1.0-SNAPSHOT-worker.jar or maprfs://maprdemi:7222/demo.mapr.com/tmp/sparkYarn-1.0-SNAPSHOT-worker.jar
-                .set("spark.yarn.dist.files", "maprfs://demo.mapr.com/tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar")
-                .set("spark.yarn.jar", "maprfs://demo.mapr.com/tmp/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar")
-                .set("spark.yarn.am.extraLibraryPath", "maprfs://demo.mapr.com/tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar");
+                .set("spark.yarn.dist.files", "maprfs://my.cluster.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar")
+                .set("spark.yarn.jar", "maprfs://my.cluster.com/user/spark/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar")
+                .set("spark.yarn.am.extraLibraryPath", "maprfs://my.cluster.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar");
 
                 // Log Spark
 //                .set("spark.driver.log.level", "INFO")
@@ -60,6 +63,8 @@ public class Test {
 
 
         SparkContext sparkContext = new SparkContext(sparkConf);
+        // TODO essayer avec un addJar et enlever le spark.yarn.dist.files et le spark.yarn.am.extraLibraryPath
+        //sparkContext.addJar();
         return new JavaSparkContext(sparkContext);
     }
 }

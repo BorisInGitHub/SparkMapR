@@ -10,6 +10,11 @@ Configure your /etc/hosts to known the ``maprdemo`` host (127.0.0.1)
 * The web manager is on [http://maprdemo:8443]() mapr/mapr
 * My MapR current version is v. 5.1.0.37549.GA
 
+### Mapr From scratch
+* Install Mapr on Ubuntu with root user
+* Add Spark with : http://doc.mapr.com/display/MapR/Install+Spark+on+YARN
+
+
 ###Usage
 I will try the yarn client mode to connect Spark to the MapR cluster (i don't want to use the spark-submit script).
 
@@ -65,13 +70,13 @@ scp -P 2222 target/sparkYarnMapR-1.0-SNAPSHOT-worker.jar mapr@maprdemo:///tmp/
 
 ssh mapr@maprdemo -p 2222
 # On the host maprdemo do
-cp /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar /tmp/
+cp /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1605.jar /tmp/
 
-hadoop fs -fs maprfs://maprdemo -mkdir -p /user/spark
-hadoop fs -fs maprfs://maprdemo -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar
-hadoop fs -fs maprfs://maprdemo -put /tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
-hadoop fs -fs maprfs://maprdemo -chmod -R 777 /user/spark
-hadoop fs -fs maprfs://maprdemo -ls /user/spark/
+hadoop fs -fs maprfs://my.cluster.com -mkdir -p /user/spark
+hadoop fs -fs maprfs://my.cluster.com -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar
+hadoop fs -fs maprfs://my.cluster.com -put /tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
+hadoop fs -fs maprfs://my.cluster.com -chmod -R 777 /user/spark
+hadoop fs -fs maprfs://my.cluster.com -ls /user/spark/
 ```
 
 * Check the configuration in the Test.java, specially the following parameters for the sparkConfiguration

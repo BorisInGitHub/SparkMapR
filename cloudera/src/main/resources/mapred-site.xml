@@ -76,19 +76,19 @@
   </property>
   <property>
     <name>mapreduce.jobhistory.address</name>
-    <value>quickstart.cloudera:10020</value>
+    <value>cdh:10020</value>
   </property>
   <property>
     <name>mapreduce.jobhistory.webapp.address</name>
-    <value>quickstart.cloudera:19888</value>
+    <value>cdh:19888</value>
   </property>
   <property>
     <name>mapreduce.jobhistory.webapp.https.address</name>
-    <value>quickstart.cloudera:19890</value>
+    <value>cdh:19890</value>
   </property>
   <property>
     <name>mapreduce.jobhistory.admin.address</name>
-    <value>quickstart.cloudera:10033</value>
+    <value>cdh:10033</value>
   </property>
   <property>
     <name>mapreduce.framework.name</name>
@@ -116,15 +116,15 @@
   </property>
   <property>
     <name>yarn.app.mapreduce.am.command-opts</name>
-    <value>-Djava.net.preferIPv4Stack=true -Xmx52428800</value>
+    <value>-Djava.net.preferIPv4Stack=true -Xmx825955249</value>
   </property>
   <property>
     <name>mapreduce.map.java.opts</name>
-    <value>-Djava.net.preferIPv4Stack=true -Xmx52428800</value>
+    <value>-Djava.net.preferIPv4Stack=true</value>
   </property>
   <property>
     <name>mapreduce.reduce.java.opts</name>
-    <value>-Djava.net.preferIPv4Stack=true -Xmx52428800</value>
+    <value>-Djava.net.preferIPv4Stack=true</value>
   </property>
   <property>
     <name>yarn.app.mapreduce.am.admin.user.env</name>
