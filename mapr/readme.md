@@ -3,7 +3,7 @@
 
 
 ###MapR sandbox
-Download, Install and run the MapR sandbox (with Oracle VirtualBox in my case) MapR 5.1 : http://doc.mapr.com/display/MapR/MapR+Sandbox+for+Hadoop
+Download, Install and run the MapR sandbox (with Oracle VirtualBox in my case) MapR 5.1 : [http://doc.mapr.com/display/MapR/MapR+Sandbox+for+Hadoop]()
 
 Configure your /etc/hosts to known the ``maprdemo`` host (127.0.0.1)
 * The server name is ``maprdemo``
@@ -28,7 +28,7 @@ We need the following properties :
   * yarn.resourcemanager.address
   * yarn.resourcemanager.hostname
 
-* Configure the **core-site.xml** in the resources directory (to connect correctly to HDFS with Spark). We nedd the folowwing properties :
+* Configure the **core-site.xml** in the resources directory (to connect correctly to HDFS with Spark). We nedd the following properties :
   * fs.defaultFS
 
 * In the maven pom (pom.xml) add the dependency to mapr-fs (see [http://doc.mapr.com/display/MapR/Maven+Artifacts+for+MapR]())
@@ -70,13 +70,19 @@ scp -P 2222 target/sparkYarnMapR-1.0-SNAPSHOT-worker.jar mapr@maprdemo:///tmp/
 
 ssh mapr@maprdemo -p 2222
 # On the host maprdemo do
-cp /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1605.jar /tmp/
-
 hadoop fs -fs maprfs://my.cluster.com -mkdir -p /user/spark
-hadoop fs -fs maprfs://my.cluster.com -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar
+hadoop fs -fs maprfs://my.cluster.com -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly.jar
 hadoop fs -fs maprfs://my.cluster.com -put /tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
 hadoop fs -fs maprfs://my.cluster.com -chmod -R 777 /user/spark
 hadoop fs -fs maprfs://my.cluster.com -ls /user/spark/
+
+
+
+hadoop fs -fs maprfs://demo.mapr.com -mkdir -p /user/spark
+hadoop fs -fs maprfs://demo.mapr.com -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly.jar
+hadoop fs -fs maprfs://demo.mapr.com -put /tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
+hadoop fs -fs maprfs://demo.mapr.com -chmod -R 777 /user/spark
+hadoop fs -fs maprfs://demo.mapr.com -ls /user/spark/
 ```
 
 * Check the configuration in the Test.java, specially the following parameters for the sparkConfiguration
@@ -93,6 +99,12 @@ Notes:
    ``scp -P 2222 mapr@maprdemo:///opt/mapr/conf/mapr-clusters.conf /opt/mapr/conf/mapr-clusters.conf``
  * We can see my files on maprdemo host : in directory /mapr/demo.mapr.com/user/spark/
  * MaprFS : Usage see [http://doc.mapr.com/display/MapR/Accessing+MapR-FS+in+Java+Applications]()
+
+ * Configuration Hadoop Faire dans le répertoire /etc/hadoop/conf du poste de dev:
+   ```
+    scp -P 2222 mapr@maprdemo:///opt/mapr/hadoop/hadoop-2.7.0/etc/hadoop/* /etc/hadoop/conf/
+   ```
+
 
 * Launch the Test Java application
 

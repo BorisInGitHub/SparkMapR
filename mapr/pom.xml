@@ -139,7 +139,7 @@
 
     <properties>
         <!--<spark.version>1.6.0</spark.version>-->
-        <spark.version>1.5.2-mapr-1605</spark.version>
+        <spark.version>1.5.2-mapr-1602</spark.version>
         <mapr.version>5.1.0-mapr</mapr.version>
     </properties>
 

@@ -52,9 +52,9 @@ public class Test {
 
 
                 // maprfs://demo.mapr.com/tmp/sparkYarn-1.0-SNAPSHOT-worker.jar or maprfs://maprdemi:7222/demo.mapr.com/tmp/sparkYarn-1.0-SNAPSHOT-worker.jar
-                .set("spark.yarn.dist.files", "maprfs://my.cluster.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar")
-                .set("spark.yarn.jar", "maprfs://my.cluster.com/user/spark/spark-assembly-1.5.2-mapr-1605-hadoop2.7.0-mapr-1602.jar")
-                .set("spark.yarn.am.extraLibraryPath", "maprfs://my.cluster.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar");
+                .set("spark.yarn.dist.files", "maprfs://demo.mapr.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar")
+                .set("spark.yarn.jar", "maprfs://demo.mapr.com/user/spark/spark-assembly.jar")
+                .set("spark.yarn.am.extraLibraryPath", "maprfs://demo.mapr.com/user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar");
 
                 // Log Spark
 //                .set("spark.driver.log.level", "INFO")
