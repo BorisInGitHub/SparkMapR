@@ -79,7 +79,9 @@ hadoop fs -fs maprfs://my.cluster.com -ls /user/spark/
 
 
 hadoop fs -fs maprfs://demo.mapr.com -mkdir -p /user/spark
+hadoop fs -fs maprfs://demo.mapr.com -rm /user/spark/spark-assembly.jar
 hadoop fs -fs maprfs://demo.mapr.com -put /opt/mapr/spark/spark-1.5.2/lib/spark-assembly-1.5.2-mapr-1602-hadoop2.7.0-mapr-1602.jar /user/spark/spark-assembly.jar
+hadoop fs -fs maprfs://demo.mapr.com -rm /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
 hadoop fs -fs maprfs://demo.mapr.com -put /tmp/sparkYarnMapR-1.0-SNAPSHOT-worker.jar /user/spark/sparkYarnMapR-1.0-SNAPSHOT-worker.jar
 hadoop fs -fs maprfs://demo.mapr.com -chmod -R 777 /user/spark
 hadoop fs -fs maprfs://demo.mapr.com -ls /user/spark/
