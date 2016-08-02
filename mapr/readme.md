@@ -10,6 +10,8 @@ Configure your /etc/hosts to known the ``maprdemo`` host (127.0.0.1)
 * The web manager is on [http://maprdemo:8443]() mapr/mapr
 * My MapR current version is v. 5.1.0.37549.GA
 
+* Configurer la sandbox en mode accès par pont au lieu du réseau privé (des fois démarrer 2 fois la sandbox pour qu'elle marche)
+
 ### Mapr From scratch
 * Install Mapr on Ubuntu with root user
 * Add Spark with : http://doc.mapr.com/display/MapR/Install+Spark+on+YARN
@@ -109,6 +111,33 @@ Notes:
 
 
 * Launch the Test Java application
+
+
+
+## Aide MAPR
+Installation du maprClient sur les Edge nodes.
+Poru gérer correctement le système de ficheir MaprFS, il faut installer le mapr-client sur le poste lancant l'application JAVA.
+
+Pour cela : 
+* Les clés publiques MapR : [clés publiques Mapr](http://maprdocs.mapr.com/51/index.html#AdvancedInstallation/InstallingMapRSoftware-St_26982447-d3e1209.html)
+
+* Les repository MapR: [repository Mapr](http://maprdocs.mapr.com/51/index.html#AdvancedInstallation/AddingMapRreposUbuntu.html)
+
+  La version actuelle se configure comme suit :
+  ```
+  deb http://package.mapr.com/releases/v5.1.0/ubuntu/ mapr optional
+  deb http://package.mapr.com/releases/ecosystem-5.x/ubuntu binary/
+  ```
+* Le MaprClient: [client Mapr](http://maprdocs.mapr.com/51/index.html#AdvancedInstallation/SettingUptheClient-ubuntu_26982445-d3e544.html)
+
+* Configuration des CLDB nodes : 
+  ```
+  sudo /opt/mapr/server/configure.sh -N demo.mapr.com -c -C maprdemo:7222 -HS maprdemo
+  ```
+  
+  
+
+
 
 
 
